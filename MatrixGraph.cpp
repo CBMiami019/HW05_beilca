@@ -3,13 +3,13 @@
 
 using namespace std;
 
-//Constructor Here
+//Constructor here
 MatrixGraph::MatrixGraph(unsigned num_nodes){
 	num_edges = 0;
 	M.resize(num_nodes, std::vector<EdgeWeight>(num_nodes, 0.0));
 }
 
-//Deconstructor Here
+//Deconstructor here
 MatrixGraph::~MatrixGraph(){
 }
 
@@ -55,8 +55,21 @@ EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const{
    * Preconditions: u is a legal label.
    */
 std::list<NWPair> MatrixGraph::getAdj(NodeID u) const{
+	//Counter Variable for the list
+	int counter;
+	//This list will store the pairs of edges adjacent to NodeID u inside of a for loop
 	std::list<NWPair> Pairs;
-	
+	std::vector<EdgeWeight>::const_iterator start;
+	for(start = M[u].begin(); start != M[u].end(); start++) {
+		//Check if the weight of the pointer is anything greater than 0
+		//Meaning there is an adjacent node
+		if (*start != 0.0){
+			//Need a counter variable so they don't get assigned the same starting value
+			Pairs.push_front(NWPair(counter, * start));
+			counter++;
+		}
+	}
+	return Pairs;
 }
 
 /*
@@ -65,7 +78,16 @@ std::list<NWPair> MatrixGraph::getAdj(NodeID u) const{
    * Preconditions: u is a legal label;
    */
 unsigned MatrixGraph::degree(NodeID u) const{
-	
+	//Very similar to the getAdj method, but we don't need a counter since we're not returning pairs, just a number
+	unsigned numNeighbors;
+	std::vector<EdgeWeight>::const_iterator start;
+	for(start = M[u].begin(); start != M[u].end(); start++){
+		//Again if the pointer is greater than 0, then there is a node
+		if(*start != 0){
+			numNeighbors++;
+		}
+	}
+	return numNeighbors;
 }
 
 //Inspector here
