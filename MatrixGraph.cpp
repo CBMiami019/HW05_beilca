@@ -3,17 +3,17 @@
 
 using namespace std;
 
-//Constructor here
+//Constructor
 MatrixGraph::MatrixGraph(unsigned num_nodes){
 	num_edges = 0;
 	M.resize(num_nodes, std::vector<EdgeWeight>(num_nodes, 0.0));
 }
 
-//Deconstructor here
+//Deconstructor
 MatrixGraph::~MatrixGraph(){
 }
 
-//Modifier Here
+//Modifier
  /*
    * Add a *weighted*, *undirected* edge between nodes u and v.
    * 
@@ -31,7 +31,7 @@ void MatrixGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight){
 	}
 }
 
-//Inspector here
+//Inspector
  /*
    * Get the weight between nodes u and v; return 0 if there is no edge.
    *
@@ -48,7 +48,7 @@ EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const{
 }
 
 
-//Inspector here
+//Inspector
  /*
    * Return a list of NodeID/EdgeWeight pairs describing the nodes adjacent to edge w.
    *
@@ -72,6 +72,7 @@ std::list<NWPair> MatrixGraph::getAdj(NodeID u) const{
 	return Pairs;
 }
 
+//Inspector
 /*
    * Return the degree (i.e. the number of neighbors) of node u.
    *
@@ -90,7 +91,7 @@ unsigned MatrixGraph::degree(NodeID u) const{
 	return numNeighbors;
 }
 
-//Inspector here
+//Inspector
 /*
    * Return the number of nodes in the graph.
    */
@@ -98,7 +99,7 @@ unsigned MatrixGraph::size() const{
 	return M.size();
 }
 
-//Inspector here
+//Inspector
   /* 
    * Return the number of edges in the graph.
    */
