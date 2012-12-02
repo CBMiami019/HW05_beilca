@@ -26,6 +26,7 @@ MatrixGraph::~MatrixGraph(){
 void MatrixGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight){
 	//Check that all the preconditions were met
 	if(0 <= u < M.size() && 0 <= v < M.size() && u !=v && weight > 0){
+		//**Still possibly have to check that there is no existing edge between u and v??
 		M[u][v] = weight;
 		M[v][u] = weight;
 	}
@@ -43,10 +44,9 @@ EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const{
 	if(u < 0.0 || v < 0.0 || u > M.size() || v > M.size())
 		return 0.0;
 	else
-		//If the preconditions are met, then returnt he weight of that edge
+		//If the preconditions are met, then return the weight of that edge
 		return M[u][v];
 }
-
 
 //Inspector
  /*
